@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import styles from './page.module.css';
+'use client';
 
-export default function Home() {
+import ConnectButton from '@/src/components/ConnectButton/ConnectButton';
+
+type Props = {};
+
+const Connect = (props: Props) => {
   return (
-    <main className={styles.main}>
-      <div className={styles.center}>
-        <h1>I want to:</h1>
-        <Link href={'/mint'}>Mint</Link>
-        <Link href={'/buy'}>Buy</Link>
-        <Link href={'/sell'}>Sell</Link>
-      </div>
-    </main>
+    <div>
+      <ConnectButton></ConnectButton>
+    </div>
   );
-}
+};
+
+export default Connect;

@@ -7,3 +7,4 @@ const Buy = (props: Props) => {
 };
 
 export default Buy;
+  

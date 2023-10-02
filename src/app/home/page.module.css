@@ -9,10 +9,27 @@
 
 .center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   padding: 4rem 0;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.menuItem {
+  font-size: 2rem;
+  text-transform: capitalize;
 }
 
 /* Tablet and Smaller Desktop */
