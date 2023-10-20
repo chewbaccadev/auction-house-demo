@@ -1,13 +1,13 @@
 'use client';
 
-import ConnectButton from '@/src/components/ConnectButton/ConnectButton';
+import WalletMultiButton from '@/src/components/WalletMultiButton/WalletMultiButton';
 
 type Props = {};
 
 const Connect = (props: Props) => {
   return (
-    <div>
-      <ConnectButton></ConnectButton>
+    <div style={{display:'grid', placeItems:'center', minHeight:'100vh'}}>
+      <WalletMultiButton></WalletMultiButton>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 'use client';
 
 import { useWallet } from '@solana/wallet-adapter-react';
-import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
 
 type Props = { children: React.ReactNode };
@@ -11,27 +10,28 @@ const WalletListeners = ({ children }: Props) => {
 
   useEffect(() => {
     wallet?.adapter.on('connect', () => {
-      console.log('connected', wallet);
-      redirect('/home');
+      console.log('connected');
     });
 
-    // return () => {
-    //   console.log('connect return');
-    //   wallet?.adapter.removeListener('connect');
-    // };
-  }, [wallet]);
-
-  useEffect(() => {
     wallet?.adapter.on('disconnect', () => {
-      console.log('disconnected', wallet);
-      redirect('/');
+      console.log('disconnected');
     });
 
-    // return () => {
-    //   console.log('disconnect return');
-    //   wallet?.adapter.removeListener('disconnect');
-    // };
+    (window as any).phantom.solana.on('accountChanged', (key: any) => {
+      wallet?.adapter.disconnect();
+    });
+
+    return () => {
+      console.log('return');
+
+      wallet?.adapter.off('connect');
+
+      wallet?.adapter.off('disconnect');
+
+      (window as any).phantom.solana.off('accountChanged');
+    };
   }, [wallet]);
+
   return <div>{children}</div>;
 };
 

@@ -8,22 +8,26 @@
 
 'use client';
 
-import { Adapter, WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { useMemo } from 'react';
+import { clusterApiUrl } from '@solana/web3.js';
 import {
   ConnectionProvider,
   WalletProvider,
 } from '@solana/wallet-adapter-react';
+import { Adapter, WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
-import React, { useMemo } from 'react';
 import WalletListeners from '../WalletListeners/WalletListeners';
+
+require('@solana/wallet-adapter-react-ui/styles.css');
 
 type Props = { children: React.ReactNode };
 
 const Providers = ({ children }: Props) => {
   const network = WalletAdapterNetwork.Devnet;
+
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-  const wallets: Adapter[] = [];
+
+  const wallets: Adapter[] = useMemo(() => [], [network]);
 
   return (
     <ConnectionProvider endpoint={endpoint}>

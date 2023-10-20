@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import styles from './page.module.css';
 import { useWallet } from '@solana/wallet-adapter-react';
+import WalletMultiButton from '@/src/components/WalletMultiButton/WalletMultiButton';
 
 const menu = ['mint', 'buy', 'sell'];
 
@@ -12,13 +13,7 @@ const Home = () => {
     <main className={styles.main}>
       <div className={styles.center}>
         <p>{wallet?.adapter.publicKey?.toBase58()}</p>
-        <button
-          onClick={() => {
-            wallet?.adapter.disconnect();
-          }}
-        >
-          Disconnect
-        </button>
+        <WalletMultiButton/>
         <h1 className={styles.title}>I want to:</h1>
         <ul className={styles.menu}>
           {menu.map((item) => {
